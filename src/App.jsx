@@ -9,9 +9,8 @@ import 'firebase/analytics';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
-
 firebase.initializeApp({
-    apiKey: "AIzaSyD4DZVB1YC2IoHLP4n7jGd67pmswROFUpM",
+  apiKey: "AIzaSyD4DZVB1YC2IoHLP4n7jGd67pmswROFUpM",
   authDomain: "chatapp-7d171.firebaseapp.com",
   projectId: "chatapp-7d171",
   storageBucket: "chatapp-7d171.appspot.com",
@@ -25,29 +24,27 @@ const firestore = firebase.firestore();
 const analytics = firebase.analytics();
 
 
-
 function App() {
 
   const [user] = useAuthState(auth);
-     
-  
-  return (
-    <div className='App'>
-          <header>
-          <h1>⚛️🔥💬</h1>
-            <SignOut />
-          </header>
 
-          <section>
+  return (
+    <div className="App">
+      <header>
+        <h1>⚛️🔥💬</h1>
+        <SignOut />
+      </header>
+
+      <section>
         {user ? <ChatRoom /> : <SignIn />}
       </section>
-        </div>
-  )
 
+    </div>
+  );
+}
 
+function SignIn() {
 
-//add signin function
-function SignIn() { 
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider);
@@ -59,16 +56,15 @@ function SignIn() {
       <p>Do not violate the community guidelines or you will be banned for life!</p>
     </>
   )
+
 }
-//add signout function
+
 function SignOut() {
   return auth.currentUser && (
     <button className="sign-out" onClick={() => auth.signOut()}>Sign Out</button>
   )
 }
 
-
-//chat room function
 
 function ChatRoom() {
   const dummy = useRef();
@@ -95,26 +91,26 @@ function ChatRoom() {
     setFormValue('');
     dummy.current.scrollIntoView({ behavior: 'smooth' });
   }
+
+  return (<>
+    <main>
+
+      {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
+
+      <span ref={dummy}></span>
+
+    </main>
+
+    <form onSubmit={sendMessage}>
+
+      <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="say something nice" />
+
+      <button type="submit" disabled={!formValue}>🕊️</button>
+
+    </form>
+  </>)
 }
 
-
-return (<>
-  <main>
-
-    {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
-
-    <span ref={dummy}></span>
-
-  </main>
-
-  <form onSubmit={sendMessage}>
-
-    <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="say something nice" />
-
-    <button type="submit" disabled={!formValue}>🕊️</button>
-
-  </form>
-</>)
 
 function ChatMessage(props) {
   const { text, uid, photoURL } = props.message;
@@ -128,5 +124,6 @@ function ChatMessage(props) {
     </div>
   </>)
 }
-}
-export default App
+
+
+export default App;
