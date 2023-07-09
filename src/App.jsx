@@ -96,7 +96,35 @@ function ChatRoom() {
     dummy.current.scrollIntoView({ behavior: 'smooth' });
   }
 }
+return (<>
+  <main>
 
+    {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
 
+    <span ref={dummy}></span>
+
+  </main>
+
+  <form onSubmit={sendMessage}>
+
+    <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="say something nice" />
+
+    <button type="submit" disabled={!formValue}>🕊️</button>
+
+  </form>
+</>)
+
+function ChatMessage(props) {
+  const { text, uid, photoURL } = props.message;
+
+  const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
+
+  return (<>
+    <div className={`message ${messageClass}`}>
+      <img src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} />
+      <p>{text}</p>
+    </div>
+  </>)
+}
 
 export default App
