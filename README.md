@@ -1,2 +1,2 @@
-# firebase_chat
-chat app with firebase and react vite
+# CHAT_APP
+chat app with React &amp; Firebase

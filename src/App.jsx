@@ -1,0 +1,32 @@
+import React, { useRef, useState } from 'react';
+import './App.css';
+
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
+import 'firebase/analytics';
+
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+
+
+firebase.initializeApp({
+    apiKey: "AIzaSyD4DZVB1YC2IoHLP4n7jGd67pmswROFUpM",
+  authDomain: "chatapp-7d171.firebaseapp.com",
+  projectId: "chatapp-7d171",
+  storageBucket: "chatapp-7d171.appspot.com",
+  messagingSenderId: "793965761097",
+  appId: "1:793965761097:web:88b0fa9539885a7a12e598",
+  measurementId: "G-436VVH167K"
+})
+
+const auth = firebase.auth();
+const firestore = firebase.firestore();
+const analytics = firebase.analytics();
+function App() {
+ 
+
+  return;
+}
+
+export default App
