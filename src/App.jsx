@@ -43,7 +43,7 @@ function App() {
       </section>
         </div>
   )
-}
+
 
 
 //add signin function
@@ -96,6 +96,8 @@ function ChatRoom() {
     dummy.current.scrollIntoView({ behavior: 'smooth' });
   }
 }
+
+
 return (<>
   <main>
 
@@ -126,5 +128,5 @@ function ChatMessage(props) {
     </div>
   </>)
 }
-
+}
 export default App
